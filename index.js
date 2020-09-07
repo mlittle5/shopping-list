@@ -60,8 +60,8 @@ function renderShoppingList() {
     $('#js-shopping-list-form').submit(function(event) {
       event.preventDefault();
       console.log('`handleNewItemSubmit` ran');
-      const newItemName = $('.shopping-list-entry').val();
-      $('.shopping-list-entry').val('');
+      const newItemName = $('#shopping-list-entry').val();
+      $('#shopping-list-entry').val('');
       addItemToShoppingList(newItemName);
       renderShoppingList();
     });
