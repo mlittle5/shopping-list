@@ -2,18 +2,12 @@
 
 
 const STORE = [
-    {id: cuid(), name: "apples", checked: false},
+    {id: cuid(), name: "oranges", checked: false},
     {id: cuid(), name: "oranges", checked: false},
     {id: cuid(), name: "milk", checked: true},
     {id: cuid(), name: "bread", checked: false}
   ];
 
-// const STORE = [
-//     {name: "apples", checked: false},
-//     {name: "oranges", checked: false},
-//     {name: "milk", checked: true},
-//     {name: "bread", checked: false}
-//   ];
 
   function generateItemElement(item) {
     return `
@@ -34,7 +28,7 @@ const STORE = [
   function generateShoppingItemsString(shoppingList) {
     console.log("Generating shopping list element");
   
-    const items = shoppingList.map((item) => generateItemElement(item));
+    const items = shoppingList.map((i) => generateItemElement(i));
     
     return items.join("");
   }
@@ -53,7 +47,7 @@ function renderShoppingList() {
   
   function addItemToShoppingList(itemName) {
     console.log(`Adding "${itemName}" to shopping list`);
-    STORE.push({name: itemName, checked: false});
+    STORE.push({id: cuid(), name: itemName, checked: false});
   }
   
   function handleNewItemSubmit() {
@@ -82,7 +76,8 @@ function renderShoppingList() {
   function handleItemCheckClicked() {
     $('.shopping-list').on('click', `.shopping-item-toggle`, event => {
       console.log('`handleItemCheckClicked` ran');
-      const id = getItemIdFromElement(event.currentTarget);
+      const $this = $(event.currentTarget);
+      const id = getItemIdFromElement($this);
       toggleCheckedForListItem(id);
       renderShoppingList();
     });
